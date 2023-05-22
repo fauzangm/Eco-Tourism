@@ -170,6 +170,9 @@ dependencies {
     //sdp
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
+    // ViewPager & Recylerview indicator
+    implementation 'me.relex:circleindicator:2.1.6'
+
     def core_version = "1.6.0"
     implementation("androidx.core:core-ktx:${core_version}")
 }
