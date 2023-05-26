@@ -8,4 +8,6 @@
     <string name="login_password">Password</string>
     <string name="tittle_login">Hai Selamat Datang Kembali !</string>
     <string name="logout">Logout</string>
+    <string name="village_name">Village Name</string>
+    <string name="recommendation">Recommendation</string>
 </resources>

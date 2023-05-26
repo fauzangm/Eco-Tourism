@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.id.etourism.R
+import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 is ExceptionState.Success -> {
                     Timber.tag("succes").e("${state.data}")
+                    result(state.data)
                 }
             }
 
@@ -60,6 +62,9 @@ class MainActivity : AppCompatActivity() {
                     Log.e("Error Login", "error")
                 }
             }
+    }
+    fun result(data:List<Wisata>){
+
     }
 
 }
