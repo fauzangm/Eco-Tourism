@@ -12,7 +12,6 @@ data class Wisata(
     var image : String? = null,
     var deskripsi : String? = null,
     var name : String? = null,
-
     var wisata : ArrayList<Map<String,String>>? = null
 
 )

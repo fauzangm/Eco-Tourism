@@ -10,4 +10,5 @@
     <string name="logout">Logout</string>
     <string name="village_name">Village Name</string>
     <string name="recommendation">Recommendation</string>
+    <string name="village_description">Deskripsi Desa</string>
 </resources>
