@@ -6,100 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailActivity">
 
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/iv_logo_detail"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+<!--    android:contentDescription="@string/image_preview"-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_village_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_logo_detail"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Village Name"
+        android:textColor="@color/colorSoftDarkerGrey"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_logo_detail"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:contentDescription="@string/image_preview"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+    <TextView
+        android:id="@+id/tv_username_buah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_village_name"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/village_name"
+        android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/tv_nama_desa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_logo_detail"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="17dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Buah Buahan"
-                android:textColor="@color/colorSoftDarkerGrey"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_deskripsi_detail"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_username_buah"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:fontFamily="@font/poppins_regular"-->
+<!--        android:text="@string/deskripsi_detail"-->
+<!--        android:textColor="@color/colorSoftDarkerGrey"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/tv_username_buah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_nama_desa"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/village_name"
-                android:textSize="13sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_deskripsi_buah"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_deskripsi_detail"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:fontFamily="@font/poppins_regular"-->
+<!--        android:text="@string/deskripsi"-->
+<!--        android:textSize="13sp" />-->
 
-            <TextView
-                android:id="@+id/tv_deskripsi_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_username_buah"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/deskripsi_detail"
-                android:textColor="@color/colorSoftDarkerGrey"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_warna_detail"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_deskripsi_buah"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:fontFamily="@font/poppins_regular"-->
+<!--        android:text="@string/warna_buah"-->
+<!--        android:textColor="@color/colorSoftDarkerGrey"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/tv_deskripsi_buah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_deskripsi_detail"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/deskripsi"
-                android:textSize="13sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_village_description"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_warna_detail"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:fontFamily="@font/poppins_regular"-->
+<!--        android:text="@string/village_description"-->
+<!--        android:textSize="13sp" />-->
 
-            <TextView
-                android:id="@+id/tv_warna_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_deskripsi_buah"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/warna_buah"
-                android:textColor="@color/colorSoftDarkerGrey"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_warna_buah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_warna_detail"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/warna_buah"
-                android:textSize="13sp" />
-
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

@@ -18,12 +18,14 @@ import timber.log.Timber
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
+    private lateinit var firebaseauth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         try {
+            firebaseauth =  FirebaseAuth.getInstance()
             initUi()
         }catch (e:Exception){
             e.printStackTrace()
@@ -31,18 +33,27 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUi() {
-        initAction()
-
-
-    }
-
-    private fun initAction() {
         binding.btnMasuk.setOnClickListener {
-            start<MainActivity>()
-            finish()
-        }
-    }
+            //val email = binding.tiUsername.text.toString()
+            //val password = binding.tiPassword.text.toString()
+            loginUser("tesuser@gmail.com","12341234")
 
+        }
+
+    }
+    private fun loginUser(email: String, pw: String) {
+        firebaseauth.signInWithEmailAndPassword(email, pw)
+            .addOnCompleteListener(this) {
+                if (it.isSuccessful) {
+                    Log.e("Succes Login", "succes")
+                    start<MainActivity>()
+                    finish()
+
+                } else {
+                    Log.e("Error Login", "error")
+                }
+            }
+    }
 
 
 }

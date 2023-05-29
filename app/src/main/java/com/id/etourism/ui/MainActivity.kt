@@ -1,38 +1,35 @@
 package com.id.etourism.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.id.etourism.R
+import com.id.etourism.adapter.MainAdapter
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
+import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
+import splitties.activities.start
 import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var firebaseauth : FirebaseAuth
     private lateinit var binding : ActivityMainBinding
     private val viewmodel : MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initUi()
 
-        try {
-            firebaseauth =  FirebaseAuth.getInstance()
-            initUi()
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
     }
 
     private fun initUi() {
-        loginUser("tesuser@gmail.com","12341234")
         viewmodel.getWisata()
         viewmodel.data.observe(this){ state ->
             when(state){
@@ -44,27 +41,28 @@ class MainActivity : AppCompatActivity() {
                 }
                 is ExceptionState.Success -> {
                     Timber.tag("succes").e("${state.data}")
-                    result(state.data)
+                    val adapter = MainAdapter(state.data)
+                    val layoutManager = LinearLayoutManager(this)
+                    binding.rvVillage.layoutManager = layoutManager
+                    binding.rvVillage.adapter = adapter
+                    adapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: Wisata) {
+                            val intent = Intent(this@MainActivity,DetailActivity::class.java)
+                            intent.putExtra(EXTRA_ID,data.wisata)
+                            startActivity(intent)
+                        }
+
+
+                    })
+
+
                 }
             }
 
         }
     }
-
-    private fun loginUser(email: String, pw: String) {
-
-        firebaseauth.signInWithEmailAndPassword(email, pw)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-                    Log.e("Succes Login", "succes")
-
-                } else {
-                    Log.e("Error Login", "error")
-                }
-            }
-    }
-    fun result(data:List<Wisata>){
-
+    companion object {
+        const val EXTRA_ID = "extra_id"
     }
 
 }
