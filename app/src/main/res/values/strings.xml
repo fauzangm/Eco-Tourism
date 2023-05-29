@@ -7,4 +7,7 @@
     <string name="login_username">Email</string>
     <string name="login_password">Password</string>
     <string name="tittle_login">Hai Selamat Datang Kembali !</string>
+    <string name="form_error">"Form Wajib Diisi"</string>
+    <string name="email_error">Masukkan Email yang valid</string>
+    <string name="password_error">Password harus lebih dari 8 karakter</string>
 </resources>

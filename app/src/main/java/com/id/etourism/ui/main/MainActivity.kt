@@ -1,12 +1,10 @@
-package com.id.etourism.ui
+package com.id.etourism.ui.main
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
-import com.id.etourism.R
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
