@@ -1,27 +1,23 @@
-package com.id.etourism.ui.auth
+package com.id.etourism.ui.main
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
-import com.id.etourism.R
-import com.id.etourism.databinding.ActivityLoginBinding
 import com.id.etourism.databinding.ActivityMainBinding
-import com.id.etourism.ui.MainActivity
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
-import splitties.activities.start
 import timber.log.Timber
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityLoginBinding
+class MainActivity : AppCompatActivity() {
     private lateinit var firebaseauth : FirebaseAuth
+    private lateinit var binding : ActivityMainBinding
+    private val viewmodel : MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding =  ActivityLoginBinding.inflate(layoutInflater)
+        binding =  ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         try {
@@ -33,27 +29,35 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUi() {
-        binding.btnMasuk.setOnClickListener {
-            //val email = binding.tiUsername.text.toString()
-            //val password = binding.tiPassword.text.toString()
-            loginUser("tesuser@gmail.com","12341234")
+        loginUser("tesuser@gmail.com","12341234")
+        viewmodel.getWisata()
+        viewmodel.data.observe(this){ state ->
+            when(state){
+                is ExceptionState.Loading -> {
+                    Timber.tag("loading").e("loading...")
+                }
+                is ExceptionState.Failure -> {
+                    Timber.tag("gagal").e(state.error)
+                }
+                is ExceptionState.Success -> {
+                    Timber.tag("succes").e("${state.data}")
+                }
+            }
 
         }
-
     }
+
     private fun loginUser(email: String, pw: String) {
+
         firebaseauth.signInWithEmailAndPassword(email, pw)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
                     Log.e("Succes Login", "succes")
-                    start<MainActivity>()
-                    finish()
 
                 } else {
                     Log.e("Error Login", "error")
                 }
             }
     }
-
 
 }
