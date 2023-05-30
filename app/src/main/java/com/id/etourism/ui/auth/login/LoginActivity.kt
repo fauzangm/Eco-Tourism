@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityLoginBinding
 import com.id.etourism.ui.main.MainActivity
+import com.id.etourism.ui.main.MainViewModel
 import com.id.etourism.utils.ExceptionState
-import com.id.etourism.viewmodel.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import splitties.activities.start
 import timber.log.Timber
@@ -19,7 +20,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel : LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityLoginBinding.inflate(layoutInflater)
@@ -33,8 +34,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUi() {
-        loginViewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
-
         initAction()
         initObserve()
     }
@@ -52,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
 
                 is ExceptionState.Success -> {
                     Timber.tag("success").e("${state.data}")
+                    Toast.makeText(this,"Berhasil Login",Toast.LENGTH_SHORT).show()
+                    start<MainActivity>()
                 }
             }
         }

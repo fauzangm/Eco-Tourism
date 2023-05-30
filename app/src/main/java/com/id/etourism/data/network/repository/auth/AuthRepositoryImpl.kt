@@ -5,9 +5,10 @@ import com.id.etourism.utils.ExceptionState
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 
-class AuthRepositoryImpl(): AuthRepository {
+class AuthRepositoryImpl(
+    private val firebaseauth : FirebaseAuth
+): AuthRepository {
 
-    private lateinit var firebaseauth : FirebaseAuth
 
     override fun register(result: (ExceptionState<String>) -> Unit, name: String, email: String, pw: String) {
         firebaseauth.createUserWithEmailAndPassword(email, pw)

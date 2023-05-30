@@ -10,12 +10,12 @@ import com.bumptech.glide.Glide
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityProfileBinding
 import com.id.etourism.utils.ExceptionState
-import com.id.etourism.viewmodel.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
-    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,22 +24,6 @@ class ProfileActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Profile Story"
 
-        profileViewModel = ViewModelProvider(this, ViewModelFactory(this))[ProfileViewModel::class.java]
 
-        profileViewModel.data.observe(this) { state ->
-            when (state) {
-                is ExceptionState.Loading -> {
-                    Timber.tag("loading").e("loading...")
-                }
-
-                is ExceptionState.Failure -> {
-                    Timber.tag("gagal").e(state.error)
-                }
-
-                is ExceptionState.Success -> {
-                    Timber.tag("success").e("${state.data}")
-                }
-            }
-        }
     }
 }

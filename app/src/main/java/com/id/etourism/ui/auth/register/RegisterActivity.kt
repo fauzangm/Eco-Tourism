@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.id.etourism.R
@@ -14,7 +15,6 @@ import com.id.etourism.ui.auth.login.LoginActivity
 import com.id.etourism.ui.auth.login.LoginViewModel
 import com.id.etourism.ui.main.MainActivity
 import com.id.etourism.utils.ExceptionState
-import com.id.etourism.viewmodel.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import splitties.activities.start
 import timber.log.Timber
@@ -22,7 +22,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
+    private val registerViewModel : RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +36,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     private fun initUi() {
-        registerViewModel = ViewModelProvider(this, ViewModelFactory(this))[RegisterViewModel::class.java]
-
         initAction()
         initObserve()
     }
