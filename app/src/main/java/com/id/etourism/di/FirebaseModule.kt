@@ -1,5 +1,6 @@
 package com.id.etourism.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -17,4 +18,9 @@ object FirebaseModule {
         return FirebaseFirestore.getInstance()
     }
 
+    @Provides
+    @Singleton
+    fun provideFireBaseAuth(): FirebaseAuth{
+        return FirebaseAuth.getInstance()
+    }
 }

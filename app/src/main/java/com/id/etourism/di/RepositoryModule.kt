@@ -1,6 +1,9 @@
 package com.id.etourism.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.id.etourism.data.network.repository.auth.AuthRepository
+import com.id.etourism.data.network.repository.auth.AuthRepositoryImpl
 import com.id.etourism.data.network.repository.wisata.WisataRepository
 import com.id.etourism.data.network.repository.wisata.WisataRepositoryImpl
 import dagger.Module
@@ -19,5 +22,14 @@ object RepositoryModule {
         database: FirebaseFirestore
     ): WisataRepository {
         return WisataRepositoryImpl(database)
+    }
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        firebaseAuth: FirebaseAuth
+    ): AuthRepository {
+        return AuthRepositoryImpl(
+            firebaseAuth
+        )
     }
 }

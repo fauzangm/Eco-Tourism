@@ -11,4 +11,11 @@
     <string name="village_name">Village Name</string>
     <string name="recommendation">Recommendation</string>
     <string name="village_description">Deskripsi Desa</string>
+    <string name="register_username">Full Name</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="title_register">Registrate yourself !</string>
+    <string name="form_error">"Form Wajib Diisi"</string>
+    <string name="email_error">Masukkan Email yang valid</string>
+    <string name="password_error">Password harus lebih dari 8 karakter</string>
 </resources>
