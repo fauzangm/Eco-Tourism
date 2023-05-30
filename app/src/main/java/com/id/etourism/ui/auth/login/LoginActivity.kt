@@ -10,9 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityLoginBinding
 import com.id.etourism.ui.main.MainActivity
+import com.id.etourism.utils.ExceptionState
 import com.id.etourism.viewmodel.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import splitties.activities.start
+import timber.log.Timber
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -34,6 +36,25 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
 
         initAction()
+        initObserve()
+    }
+
+    private fun initObserve() {
+        loginViewModel.data.observe(this) { state ->
+            when (state) {
+                is ExceptionState.Loading -> {
+                    Timber.tag("loading").e("loading...")
+                }
+
+                is ExceptionState.Failure -> {
+                    Timber.tag("gagal").e(state.error)
+                }
+
+                is ExceptionState.Success -> {
+                    Timber.tag("success").e("${state.data}")
+                }
+            }
+        }
     }
 
     private fun initAction() {
@@ -46,21 +67,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            loginViewModel.login(email, password).observe(this) { result ->
-                when (result) {
-                    is Result.Loading -> { showLoading(true) }
-                    is Result.Success -> {
-                        showLoading(false)
-                        Toast.makeText(this, result.data.message, Toast.LENGTH_SHORT).show()
-                        start<MainActivity>()
-                        finish()
-                    }
-                    is Result.Error -> {
-                        showLoading(false)
-                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            loginViewModel.login(email, password)
         }
     }
 
@@ -70,7 +77,4 @@ class LoginActivity : AppCompatActivity() {
 
         return isEmailValid && isPasswordValid
     }
-
-    private fun showLoading(isLoading: Boolean) { binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE }
-
 }

@@ -32,11 +32,6 @@
                 android:orientation="horizontal"
                 android:weightSum="10">
 
-                <!--                <ImageView-->
-                <!--                    android:src="@mipmap/img_person_login"-->
-                <!--                    android:layout_width="100dp"-->
-                <!--                    android:layout_gravity="center"-->
-                <!--                    android:layout_height="100dp"/>-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

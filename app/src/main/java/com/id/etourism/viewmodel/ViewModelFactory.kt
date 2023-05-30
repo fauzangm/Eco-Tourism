@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.id.etourism.ui.auth.login.LoginViewModel
 import com.id.etourism.ui.auth.register.RegisterViewModel
 import com.id.etourism.ui.main.MainViewModel
+import com.id.etourism.ui.profile.ProfileViewModel
 
 class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -19,6 +20,9 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
             }
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(Injection.provideAuthRepository(context)) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(Injection.provideAuthRepository(context)) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
