@@ -2,15 +2,11 @@ package com.id.etourism.ui.onBoarding
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityOnboardingBinding
-import com.id.etourism.ui.MainActivity
-import com.id.etourism.ui.auth.LoginActivity
+import com.id.etourism.ui.auth.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import me.relex.circleindicator.CircleIndicator
-import me.relex.circleindicator.CircleIndicator2
-import me.relex.circleindicator.CircleIndicator3
 import splitties.activities.start
 import timber.log.Timber
 

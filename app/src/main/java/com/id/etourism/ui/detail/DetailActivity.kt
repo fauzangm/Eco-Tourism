@@ -2,9 +2,8 @@ package com.id.etourism.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.id.etourism.R
-import com.id.etourism.ui.MainActivity
+import com.id.etourism.ui.main.MainActivity
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

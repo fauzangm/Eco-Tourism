@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="421dp"
+        android:layout_height="467dp"
         android:padding="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,11 +37,11 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/tvTittleLogin"
+                        android:id="@+id/tvTitleRegister"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_8sdp"
-                        android:text="@string/tittle_login"
+                        android:text="@string/title_register"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvTittleLogin">
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleRegister">
 
                         <TextView
                             android:id="@+id/tvUsernameLabel"
@@ -66,7 +66,7 @@
                             android:layout_marginStart="10dp"
                             android:paddingStart="@dimen/_10sdp"
                             android:paddingEnd="@dimen/_10sdp"
-                            android:text="@string/login_username"
+                            android:text="@string/register_username"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="@dimen/_10sdp" />
 
@@ -83,6 +83,60 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etUsername"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:background="@drawable/primary_rounded_outline"
+                                android:drawableStart="@drawable/ic_person_primary"
+                                android:hint="@string/register_username"
+                                android:imeActionLabel="Username"
+                                android:imeOptions="actionNext"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:paddingHorizontal="@dimen/_8sdp"
+                                android:paddingTop="0dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textColorHint="@color/colorLightGrey"
+                                android:textSize="@dimen/_12sdp"
+                                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llcEmailFormContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llcUsernameFormContainer">
+
+                        <TextView
+                            android:id="@+id/tvEmailLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:text="@string/login_username"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tiEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            app:boxBackgroundMode="none"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etEmail"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_40sdp"
                                 android:background="@drawable/primary_rounded_outline"
@@ -111,7 +165,7 @@
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/llcUsernameFormContainer">
+                        app:layout_constraintTop_toBottomOf="@+id/llcEmailFormContainer">
 
                         <TextView
                             android:id="@+id/tvPasswordLabel"
@@ -120,7 +174,7 @@
                             android:layout_marginStart="10dp"
                             android:paddingStart="@dimen/_10sdp"
                             android:paddingEnd="@dimen/_10sdp"
-                            android:text="@string/login_password"
+                            android:text="@string/register_password"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="@dimen/_10sdp" />
 
@@ -142,8 +196,8 @@
                                 android:layout_height="@dimen/_40sdp"
                                 android:background="@drawable/primary_rounded_outline"
                                 android:drawableStart="@drawable/ic_lock_primary"
-                                android:hint="@string/login_password"
-                                android:imeActionLabel="@string/login_password"
+                                android:hint="@string/register_password"
+                                android:imeActionLabel="@string/register_password"
                                 android:imeOptions="actionDone"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
@@ -163,7 +217,7 @@
                         android:layout_height="@dimen/_30sdp"
                         android:layout_margin="@dimen/_20sdp"
                         android:background="@drawable/bg_btn_accent_rounded"
-                        android:text="Login"
+                        android:text="Register"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
@@ -179,10 +233,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

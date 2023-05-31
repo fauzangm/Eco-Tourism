@@ -1,20 +1,16 @@
-package com.id.etourism.ui
+package com.id.etourism.ui.main
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
-import com.id.etourism.R
 import com.id.etourism.adapter.MainAdapter
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
-import splitties.activities.start
 import timber.log.Timber
 
 @AndroidEntryPoint
