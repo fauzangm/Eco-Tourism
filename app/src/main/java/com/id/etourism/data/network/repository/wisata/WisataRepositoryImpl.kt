@@ -31,4 +31,11 @@ class WisataRepositoryImpl(
                 )
             }
     }
+
+    override fun searchWisata(search: String, result: (ExceptionState<List<Wisata>>) -> Unit) {
+
+    }
+
+    override fun geSearchWisata(result: (ExceptionState<List<Wisata>>) -> Unit) {
+    }
 }

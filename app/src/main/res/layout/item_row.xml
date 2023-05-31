@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:backgroundTint="@color/colorAccent"
+    android:paddingHorizontal="16dp"
+    android:backgroundTint="@color/colorWhite"
     app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,6 +51,7 @@
             android:textSize="17sp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="8dp"
+            android:paddingHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_village_name"
             app:layout_constraintStart_toStartOf="@+id/tv_village_name"
