@@ -63,10 +63,10 @@ class LoginActivity : AppCompatActivity() {
             val email = binding?.etUsername?.text.toString().trim()
             val password = binding?.etPassword?.text.toString().trim()
 
-            if (!isFormValid(email, password)) {
-                Toast.makeText(this, getString(R.string.form_error), Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+//            if (!isFormValid(email, password)) {
+//                Toast.makeText(this, getString(R.string.form_error), Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
 
             loginViewModel.login(email, password)
         }

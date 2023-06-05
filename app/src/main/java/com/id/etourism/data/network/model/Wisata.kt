@@ -9,9 +9,16 @@ import kotlin.collections.ArrayList
 
 data class Wisata(
 
-    var image : String? = null,
-    var deskripsi : String? = null,
-    var name : String? = null,
-    var wisata : ArrayList<Map<String,String>>? = null
+    var Place_Id: String? = null,
+    var Place_Name : String? = null,
+    var Description : String? = null,
+    var Category: String? = null,
+    var City : String? = null,
+    var Price : String? = null,
+    var Rating: String? = null,
+    var Time_Minutes : String? = null,
+    var Coordinate : String? = null,
+    var Lat : String? = null,
+    var Long: String? = null,
 
 )

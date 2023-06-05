@@ -16,6 +16,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/backgrounds/scenic" />
 
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_village"
+        android:paddingHorizontal="16dp"
+        tools:text="Category" />
+
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -33,11 +45,11 @@
         android:id="@+id/tv_village"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:paddingHorizontal="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_village"
+        app:layout_constraintTop_toBottomOf="@id/tv_category"
         tools:text="Village Name" />
 
     <TextView
@@ -109,12 +121,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Followers"
+                    android:text="Rating"
                     android:textSize="14sp"
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/tv_followers"
+                    android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -124,57 +136,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linear_layoutFollowing"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Following"
-                    android:textSize="14sp"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tv_following"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_layoutRepository"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Repository"
-                    android:textSize="14sp"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tv_repository"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

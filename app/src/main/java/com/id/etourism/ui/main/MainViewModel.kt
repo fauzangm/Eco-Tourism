@@ -22,6 +22,10 @@ class MainViewModel @Inject constructor(
         _data.value = ExceptionState.Loading
         repository.getWisata { _data.value = it }
     }
+    fun searchWisata(search:String){
+        _data.value = ExceptionState.Loading
+        repository.getWisata { _data.value = it }
+    }
 
 
 

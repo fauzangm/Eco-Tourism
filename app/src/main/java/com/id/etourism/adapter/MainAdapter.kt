@@ -22,11 +22,11 @@ class MainAdapter(private val wisata: List<Wisata>) : RecyclerView.Adapter<MainA
                 onItemClickCallback?.onItemClicked(wisata)
             }
             binding.apply {
-                Glide.with(itemView)
-                    .load(wisata.image)
-                    .into(imgDestination)
-                tvVillageName.text = wisata.name
-                tvDescription.text = wisata.deskripsi
+                //Glide.with(itemView)
+//                    .load(wisata.image)
+//                    .into(imgDestination)
+                tvVillageName.text = wisata.Place_Name
+                tvDescription.text = wisata.Description
             }
         }
     }
