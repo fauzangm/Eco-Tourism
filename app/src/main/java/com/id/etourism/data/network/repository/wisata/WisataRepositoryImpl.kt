@@ -11,7 +11,7 @@ class WisataRepositoryImpl(
 ) : WisataRepository {
 
     override fun getWisata(result: (ExceptionState<List<Wisata>>) -> Unit) {
-        database.collection(FireStoreTable.PLACE)
+        database.collection(FireStoreTable.TEST)
             .get()
             .addOnSuccessListener {
                 val wisata = ArrayList<Wisata>()
