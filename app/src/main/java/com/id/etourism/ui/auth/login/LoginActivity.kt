@@ -70,6 +70,8 @@ class LoginActivity : AppCompatActivity() {
             }
 
             loginViewModel.login(email, password)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
         binding.btnRegist.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
