@@ -14,7 +14,7 @@ class SessionManager @Inject constructor(
 ) {
     companion object {
         private const val PREF_NAME = "dataLoginEtourismCache"
-        private const val DATA_LOGIIN = "dataLoginCache"
+        private const val DATA_LOGIN = "dataLoginCache"
         private const val DATA_USER = "dataLoginCache"
         val PREF_IS_LOGIN = "LOGIN"
         val TOKEN = "TOKEN"
@@ -29,28 +29,6 @@ class SessionManager @Inject constructor(
         editor = pref.edit()
         editor.apply()
     }
-
-//    var dataLogin: FormatDataLogin?
-//        set(value) = pref.edit().putString(DATA_LOGIIN, Gson().toJson(value)).apply()
-//        get() {
-//            val data: String? = pref.getString(DATA_LOGIIN, null)
-//            return if (data.isNullOrBlank()) {
-//                null
-//            } else {
-//                Gson().fromJson(data, FormatDataLogin::class.java)
-//            }
-//        }
-//
-//    var dataUser: FormatDataUser?
-//        set(value) = pref.edit().putString(DATA_USER, Gson().toJson(value)).apply()
-//        get() {
-//            val data: String? = pref.getString(DATA_USER, null)
-//            return if (data.isNullOrBlank()) {
-//                null
-//            } else {
-//                Gson().fromJson(data, FormatDataUser::class.java)
-//            }
-//        }
 
     fun put(key: String, value: String) {
         editor.putString(key, value)

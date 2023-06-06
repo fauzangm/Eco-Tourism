@@ -16,7 +16,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_250sdp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_8sdp"
             app:cardCornerRadius="8dp"
@@ -28,7 +28,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="10">
 
@@ -167,13 +167,30 @@
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llcPasswordFormContainer"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:spinning_bar_color="@color/colorWhite"
                         app:spinning_bar_padding="6dp"
                         app:spinning_bar_width="4dp" />
 
+                    <com.apachat.loadingbutton.core.customViews.CircularProgressButton
+                        android:id="@+id/btnRegist"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_20sdp"
+                        android:background="@drawable/bg_btn_accent_rounded"
+                        android:text="Registrasi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/btnMasuk"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:spinning_bar_color="@color/colorWhite"
+                        app:spinning_bar_padding="6dp"
+                        app:spinning_bar_width="4dp" />
                     <ProgressBar
                         android:id="@+id/progress_bar"
                         android:layout_width="wrap_content"

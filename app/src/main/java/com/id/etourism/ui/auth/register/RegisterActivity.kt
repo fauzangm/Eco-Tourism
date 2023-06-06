@@ -70,6 +70,8 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             registerViewModel.register(name, email, password)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
     private fun isFormValid(name: String, email: String, password: String): Boolean {
