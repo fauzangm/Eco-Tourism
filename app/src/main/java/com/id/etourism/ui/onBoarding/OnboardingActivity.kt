@@ -18,6 +18,7 @@ class OnboardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
         try {
             initUi()
         }catch (e:Exception){

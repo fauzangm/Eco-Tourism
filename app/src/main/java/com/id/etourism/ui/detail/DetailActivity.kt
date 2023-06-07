@@ -1,11 +1,16 @@
 package com.id.etourism.ui.detail
 
+import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityDetailBinding
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.ui.main.MainActivity
+import com.id.etourism.ui.profile.ProfileActivity
 
 class DetailActivity : AppCompatActivity() {
 
@@ -14,6 +19,8 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =  ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         val extras = intent.extras
         if (extras != null) {
             show(
@@ -23,18 +30,33 @@ class DetailActivity : AppCompatActivity() {
                 extras.getString(MainActivity.EXTRA_LOCATION,""),
                 extras.getString(MainActivity.EXTRA_DESCRIPTION,""),
                 extras.getString(MainActivity.EXTRA_RATING,""),
+                extras.getString(MainActivity.EXTRA_IMAGE,""),
 
 
                 )
         }
     }
-    fun show(name:String,category: String,address:String,location:String, description:String,rating:String ){
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    fun show(name:String,category: String,address:String,location:String, description:String,rating:String, image: String ){
         binding.tvVillage.text = name
         binding.tvCategory.text = category
         binding.tvAddress.text = address
         binding.tvLocation.text = location
         binding.tvDescription.text = description
         binding.tvRating.text = rating
+        Glide.with(this)
+            .load(image)
+            .into(binding.ivVillage)
     }
 
 }

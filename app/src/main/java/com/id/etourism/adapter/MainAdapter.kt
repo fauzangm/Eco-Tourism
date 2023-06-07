@@ -3,15 +3,21 @@ package com.id.etourism.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ItemRowBinding
+import java.util.Locale
 
-class MainAdapter(private val wisata: List<Wisata>) : RecyclerView.Adapter<MainAdapter.WisataViewHolder>() {
+class MainAdapter(private var wisata: List<Wisata>) : RecyclerView.Adapter<MainAdapter.WisataViewHolder>(){
 
     private var onItemClickCallback: OnItemClickCallback? = null
-
+//    var filterWisata = ArrayList<Wisata>()
+//    init {
+//        filterWisata = wisata as ArrayList<Wisata>
+//    }
     fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
@@ -22,9 +28,9 @@ class MainAdapter(private val wisata: List<Wisata>) : RecyclerView.Adapter<MainA
                 onItemClickCallback?.onItemClicked(wisata)
             }
             binding.apply {
-                //Glide.with(itemView)
-//                    .load(wisata.image)
-//                    .into(imgDestination)
+                Glide.with(itemView)
+                    .load(wisata.Image)
+                    .into(imgDestination)
                 tvVillageName.text = wisata.Place_Name
                 tvDescription.text = wisata.Description
             }
@@ -44,5 +50,9 @@ class MainAdapter(private val wisata: List<Wisata>) : RecyclerView.Adapter<MainA
 
     interface OnItemClickCallback {
         fun onItemClicked(data: Wisata)
+    }
+    fun searchDataList(searchList: List<Wisata>) {
+        wisata = searchList
+        notifyDataSetChanged()
     }
 }

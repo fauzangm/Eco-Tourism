@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =  ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
         try {
             initUi()
         }catch (e:Exception){
@@ -37,7 +37,8 @@ class LoginActivity : AppCompatActivity() {
         initAction()
         initObserve()
     }
-
+//    testuser@gmail.com
+//    12341234
     private fun initObserve() {
         loginViewModel.data.observe(this) { state ->
             when (state) {
@@ -68,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
 //                return@setOnClickListener
 //            }
 
-            loginViewModel.login(email, password)
+            loginViewModel.login("tesuser@gmail.com", "12341234")
         }
     }
 
