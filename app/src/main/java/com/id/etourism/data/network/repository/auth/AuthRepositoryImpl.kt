@@ -6,8 +6,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.id.etourism.data.network.model.UserData
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val firebaseauth : FirebaseAuth,
     private val firestore: FirebaseFirestore
 ): AuthRepository {

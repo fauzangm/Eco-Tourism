@@ -7,9 +7,12 @@ import com.id.etourism.data.network.model.UserData
 import com.id.etourism.data.network.repository.auth.AuthRepositoryImpl
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel(private val authRepository: AuthRepositoryImpl) : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val authRepository: AuthRepositoryImpl
+    ) : ViewModel() {
     private val _data = MutableLiveData<ExceptionState<UserData>>()
     val data: LiveData<ExceptionState<UserData>>
         get() = _data
