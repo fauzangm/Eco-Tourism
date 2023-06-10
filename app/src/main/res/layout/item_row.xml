@@ -24,6 +24,7 @@
             android:layout_height="100dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_rating"
             android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -53,7 +54,19 @@
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tv_village_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_village_name"
-            android:maxLines="4"
+            tools:text="Rating" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            style="@style/Text"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_rating"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rating"
+            android:maxLines="3"
+            android:ellipsize="end"
             tools:text="Description" />
 
 

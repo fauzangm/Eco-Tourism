@@ -32,6 +32,7 @@ class MainAdapter(private var wisata: List<Wisata>) : RecyclerView.Adapter<MainA
                     .load(wisata.Image)
                     .into(imgDestination)
                 tvVillageName.text = wisata.Place_Name
+                tvRating.text = wisata.Rating.toString()
                 tvDescription.text = wisata.Description
             }
         }
