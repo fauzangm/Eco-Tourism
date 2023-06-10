@@ -47,8 +47,6 @@ class MainActivity : AppCompatActivity() {
                             intent.putExtra(EXTRA_ID,data.wisata)
                             startActivity(intent)
                         }
-
-
                     })
 
 

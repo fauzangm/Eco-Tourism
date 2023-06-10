@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityLoginBinding
+import com.id.etourism.ui.auth.register.RegisterActivity
 import com.id.etourism.ui.main.MainActivity
 import com.id.etourism.ui.main.MainViewModel
 import com.id.etourism.utils.ExceptionState
@@ -69,6 +70,12 @@ class LoginActivity : AppCompatActivity() {
             }
 
             loginViewModel.login(email, password)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnRegist.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
