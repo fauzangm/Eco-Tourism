@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityLoginBinding
-import com.id.etourism.ui.auth.register.RegisterActivity
 import com.id.etourism.ui.main.MainActivity
 import com.id.etourism.ui.main.MainViewModel
 import com.id.etourism.utils.ExceptionState
@@ -26,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =  ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
         try {
             initUi()
         }catch (e:Exception){
@@ -38,7 +37,8 @@ class LoginActivity : AppCompatActivity() {
         initAction()
         initObserve()
     }
-
+//    testuser@gmail.com
+//    12341234
     private fun initObserve() {
         loginViewModel.data.observe(this) { state ->
             when (state) {
@@ -64,18 +64,12 @@ class LoginActivity : AppCompatActivity() {
             val email = binding?.etUsername?.text.toString().trim()
             val password = binding?.etPassword?.text.toString().trim()
 
-            if (!isFormValid(email, password)) {
-                Toast.makeText(this, getString(R.string.form_error), Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+//            if (!isFormValid(email, password)) {
+//                Toast.makeText(this, getString(R.string.form_error), Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
 
-            loginViewModel.login(email, password)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnRegist.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            loginViewModel.login("tesuser@gmail.com", "12341234")
         }
     }
 

@@ -18,4 +18,5 @@
     <string name="form_error">"Form Wajib Diisi"</string>
     <string name="email_error">Masukkan Email yang valid</string>
     <string name="password_error">Password harus lebih dari 8 karakter</string>
+    <string name="profile">Profile</string>
 </resources>
