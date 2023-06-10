@@ -36,16 +36,16 @@ class DetailActivity : AppCompatActivity() {
 
 
                 )
-            binding.btnLocation.setOnClickListener{
-                val lat = extras.getLong(MainActivity.EXTRA_LAT)
-                val long =extras.getLong(MainActivity.EXTRA_LONG)
-                val gmmIntentUri = Uri.parse("geo:$lat,$long")
-                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                mapIntent.setPackage("com.google.android.apps.maps")
-                mapIntent.resolveActivity(packageManager)?.let {
-                    startActivity(mapIntent)
-                }
-            }
+//            binding.btnLocation.setOnClickListener{
+//                val lat = extras.getLong(MainActivity.EXTRA_LAT)
+//                val long =extras.getLong(MainActivity.EXTRA_LONG)
+//                val gmmIntentUri = Uri.parse("geo:$lat,$long")
+//                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+//                mapIntent.setPackage("com.google.android.apps.maps")
+//                mapIntent.resolveActivity(packageManager)?.let {
+//                    startActivity(mapIntent)
+//                }
+
         }
     }
 
@@ -59,7 +59,7 @@ class DetailActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    fun show(name:String,category: String,address:String,location:String, description:String,rating:String, image: String ){
+    fun show(name:String,category: String,address:String,location:String, description:String,rating:String, image: String ) {
         binding.tvVillage.text = name
         binding.tvCategory.text = category
         binding.tvAddress.text = address
@@ -68,6 +68,7 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this)
             .load(image)
             .into(binding.ivVillage)
+
     }
 
 }

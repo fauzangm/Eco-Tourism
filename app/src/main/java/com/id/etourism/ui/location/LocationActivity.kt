@@ -33,8 +33,8 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnIn
         setContentView(binding.root)
         val extras = intent.extras
         if (extras != null) {
-            lat = extras.getDouble(MainActivity.EXTRA_LAT, 0.0)
-            long = extras.getDouble(MainActivity.EXTRA_LONG, 0.0)
+//            lat = extras.getDouble(MainActivity.EXTRA_LAT, 0.0)
+//            long = extras.getDouble(MainActivity.EXTRA_LONG, 0.0)
             name = extras.getString(MainActivity.EXTRA_NAME,"")
         }
 
