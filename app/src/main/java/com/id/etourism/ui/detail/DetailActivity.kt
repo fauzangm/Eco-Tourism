@@ -10,9 +10,13 @@ import com.bumptech.glide.Glide
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityDetailBinding
 import com.id.etourism.databinding.ActivityMainBinding
+import com.id.etourism.ml.ModelCitcat
 import com.id.etourism.ui.location.LocationActivity
 import com.id.etourism.ui.main.MainActivity
 import com.id.etourism.ui.profile.ProfileActivity
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -21,21 +25,23 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =  ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         val extras = intent.extras
         if (extras != null) {
             show(
-                extras.getString(MainActivity.EXTRA_NAME,""),
-                extras.getString(MainActivity.EXTRA_CATEGORY,""),
-                extras.getString(MainActivity.EXTRA_ADDRESS,""),
-                extras.getString(MainActivity.EXTRA_LOCATION,""),
-                extras.getString(MainActivity.EXTRA_DESCRIPTION,""),
-                extras.getString(MainActivity.EXTRA_RATING,""),
-                extras.getString(MainActivity.EXTRA_IMAGE,""),
+                extras.getString(MainActivity.EXTRA_NAME, ""),
+                extras.getString(MainActivity.EXTRA_CATEGORY, ""),
+                extras.getString(MainActivity.EXTRA_ADDRESS, ""),
+                extras.getString(MainActivity.EXTRA_LOCATION, ""),
+                extras.getString(MainActivity.EXTRA_DESCRIPTION, ""),
+                extras.getString(MainActivity.EXTRA_RATING, ""),
+                extras.getString(MainActivity.EXTRA_IMAGE, ""),
 
 
                 )
+
 //            binding.btnLocation.setOnClickListener{
 //                val lat = extras.getLong(MainActivity.EXTRA_LAT)
 //                val long =extras.getLong(MainActivity.EXTRA_LONG)
@@ -45,7 +51,6 @@ class DetailActivity : AppCompatActivity() {
 //                mapIntent.resolveActivity(packageManager)?.let {
 //                    startActivity(mapIntent)
 //                }
-
         }
     }
 

@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =  ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = ""
         val layoutManager = LinearLayoutManager(this)
         binding.rvVillage.layoutManager = layoutManager
         wisata = ArrayList()

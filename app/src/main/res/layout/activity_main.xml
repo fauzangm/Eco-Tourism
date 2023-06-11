@@ -30,6 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@null"
+        style="@style/Text"
         app:queryHint="Find Destination"
         app:showDividers="end"/>
 
@@ -74,14 +75,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:foregroundGravity="bottom"
-        app:fabSize="normal"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/baseline_face_24" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
