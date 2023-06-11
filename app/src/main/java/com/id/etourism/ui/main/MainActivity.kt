@@ -2,6 +2,7 @@ package com.id.etourism.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -13,6 +14,7 @@ import com.id.etourism.R
 import com.id.etourism.adapter.MainAdapter
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
+import com.id.etourism.dummy.DummyData
 import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.ui.profile.ProfileActivity
 import com.id.etourism.ui.setting.SettingActivity
@@ -30,8 +32,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var wisata: ArrayList<Wisata>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding =  ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Timber.tag("siap").d(DummyData.generateDummy().toString())
         supportActionBar?.title = ""
         val layoutManager = LinearLayoutManager(this)
         binding.rvVillage.layoutManager = layoutManager
