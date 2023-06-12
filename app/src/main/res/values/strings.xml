@@ -15,9 +15,26 @@
     <string name="register_email">Email</string>
     <string name="register_password">Password</string>
     <string name="title_register">Registrate yourself !</string>
-    <string name="form_error">"Form Wajib Diisi"</string>
+    <string name="form_error">"Email and password required"</string>
     <string name="email_error">Masukkan Email yang valid</string>
     <string name="password_error">Password harus lebih dari 8 karakter</string>
     <string name="profile">Profile</string>
     <string name="title_activity_location">LocationActivity</string>
+    <string name="profile_mode_gelap">Mode Gelap</string>
+    <string name="login">Login</string>
+    <string name="tv_header">Welcome to the Eco-Tourism app enjoy your excitement</string>
+    <string name="welcome">WELCOME</string>
+    <string name="eco_tourism">ECO-TOURISM</string>
+    <string name="not_have_account">Don\'t have an account yet?</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="gender">Gender</string>
+    <string name="address">Address</string>
+    <string name="contact">Contact</string>
+
+    <string-array name="list_gender">
+        <item>-- SELECT GENDER --</item>
+        <item>MEN</item>
+        <item>WOMAN</item>
+    </string-array>
 </resources>

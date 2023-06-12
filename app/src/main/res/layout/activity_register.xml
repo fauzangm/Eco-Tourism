@@ -3,249 +3,345 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.auth.login.LoginActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llcHeaderContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_8sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/default_padding"
+        android:paddingTop="@dimen/default_padding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/_250sdp"
+        <ImageView
+            android:id="@+id/imgBackRegist"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/_8sdp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="5dp"
+            android:src="@drawable/ic_back"/>
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="match_parent"
+            android:paddingTop="@dimen/default_padding"
+            android:layout_height="wrap_content"
+            android:text="@string/eco_tourism"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/xl_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvHeaderSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_register"
+            android:textColor="@color/colorWhite" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBodyContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/big_padding"
+        android:background="@drawable/bg_white_top_xl_rounded"
+        android:paddingHorizontal="@dimen/small_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llcHeaderContainer">
+
+        <ScrollView
+            android:id="@+id/svBodyContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clInnerBodyContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:paddingVertical="@dimen/big_padding">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcUsernameFormContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/tvTitleRegister"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvUsernameLabel"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_8sdp"
-                        android:text="@string/title_register"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:text="@string/login_username" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/llcUsernameFormContainer"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiUsername"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="20dp"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvTitleRegister">
+                        android:layout_marginTop="@dimen/small_margin"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
 
-                        <TextView
-                            android:id="@+id/tvUsernameLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:paddingStart="@dimen/_10sdp"
-                            android:paddingEnd="@dimen/_10sdp"
-                            android:text="@string/register_username"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="@dimen/_10sdp" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tiUsername"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etUsername"
+                            android:paddingHorizontal="@dimen/default_padding"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="8dp"
-                            app:boxBackgroundMode="none"
-                            app:hintAnimationEnabled="false"
-                            app:hintEnabled="false">
+                            android:layout_height="@dimen/default_height"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:hint="@string/login_username"
+                            android:imeActionLabel="@string/login_username"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:paddingVertical="@dimen/small_padding"
+                            android:paddingTop="0dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_text"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etUsername"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40sdp"
-                                android:background="@drawable/primary_rounded_outline"
-                                android:drawableStart="@drawable/ic_person_primary"
-                                android:hint="@string/register_username"
-                                android:imeActionLabel="Username"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
-                                android:maxLines="1"
-                                android:paddingHorizontal="@dimen/_8sdp"
-                                android:paddingTop="0dp"
-                                android:singleLine="true"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textColorHint="@color/colorLightGrey"
-                                android:textSize="@dimen/_12sdp"
-                                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcPasswordFormContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llcUsernameFormContainer">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/llcEmailFormContainer"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tvPasswordLabel"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="20dp"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/llcUsernameFormContainer">
+                        android:text="@string/login_password" />
 
-                        <TextView
-                            android:id="@+id/tvEmailLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:paddingStart="@dimen/_10sdp"
-                            android:paddingEnd="@dimen/_10sdp"
-                            android:text="@string/login_username"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="@dimen/_10sdp" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tiEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="8dp"
-                            app:boxBackgroundMode="none"
-                            app:hintAnimationEnabled="false"
-                            app:hintEnabled="false">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etEmail"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40sdp"
-                                android:background="@drawable/primary_rounded_outline"
-                                android:drawableStart="@drawable/ic_person_primary"
-                                android:hint="@string/login_username"
-                                android:imeActionLabel="Username"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
-                                android:maxLines="1"
-                                android:paddingHorizontal="@dimen/_8sdp"
-                                android:paddingTop="0dp"
-                                android:singleLine="true"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textColorHint="@color/colorLightGrey"
-                                android:textSize="@dimen/_12sdp"
-                                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/llcPasswordFormContainer"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiPassword"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/llcEmailFormContainer">
+                        android:layout_marginTop="@dimen/small_margin"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
 
-                        <TextView
-                            android:id="@+id/tvPasswordLabel"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPassword"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:paddingStart="@dimen/_10sdp"
-                            android:paddingEnd="@dimen/_10sdp"
-                            android:text="@string/register_password"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="@dimen/_10sdp" />
+                            android:paddingHorizontal="@dimen/default_padding"
+                            android:layout_height="@dimen/default_height"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:hint="@string/login_password"
+                            android:imeActionLabel="@string/login_password"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingVertical="@dimen/small_padding"
+                            android:paddingTop="0dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_text"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tiPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:layout_marginTop="@dimen/_8sdp"
-                            android:layout_marginEnd="@dimen/_8sdp"
-                            app:boxBackgroundMode="none"
-                            app:hintAnimationEnabled="false"
-                            app:hintEnabled="false"
-                            app:passwordToggleEnabled="true">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcFormNamaContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llcPasswordFormContainer"
+                    android:orientation="vertical">
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etPassword"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40sdp"
-                                android:background="@drawable/primary_rounded_outline"
-                                android:drawableStart="@drawable/ic_lock_primary"
-                                android:hint="@string/register_password"
-                                android:imeActionLabel="@string/register_password"
-                                android:imeOptions="actionDone"
-                                android:inputType="textPassword"
-                                android:maxLines="1"
-                                android:paddingHorizontal="@dimen/_8sdp"
-                                android:paddingTop="0dp"
-                                android:singleLine="true"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textColorHint="@color/colorLightGrey"
-                                android:textSize="@dimen/_12sdp"
-                                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <com.apachat.loadingbutton.core.customViews.CircularProgressButton
-                        android:id="@+id/btnMasuk"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_margin="@dimen/_20sdp"
-                        android:background="@drawable/bg_btn_accent_rounded"
-                        android:text="Register"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold"
-                        app:layout_constraintTop_toBottomOf="@id/llcPasswordFormContainer"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="@dimen/_20sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:spinning_bar_color="@color/colorWhite"
-                        app:spinning_bar_padding="6dp"
-                        app:spinning_bar_width="4dp" />
-
-                    <ProgressBar
-                        android:id="@+id/progress_bar"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvFormNamaLabel"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:text="@string/full_name" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiFormNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNama"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height"
+                            android:paddingHorizontal="@dimen/default_padding"
+                            android:hint="@string/full_name"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:imeActionLabel="@string/full_name"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_subtitle"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcFormGenderContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llcFormNamaContainer"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFormGenderLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gender" />
+
+                    <Spinner
+                        android:id="@+id/spinGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_height"
+                        android:background="@drawable/bg_spinner_white_accent_border_rounded"
+                        android:paddingHorizontal="@dimen/small_padding"
+                        android:textSize="@dimen/default_subtitle" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcFormAlamatContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llcFormGenderContainer"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFormAlamatLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/address" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiFormAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etAlamat"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:hint="@string/address"
+                            android:imeActionLabel="@string/default_web_client_id"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:paddingHorizontal="@dimen/default_padding"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_subtitle"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcFormNoTelpContainer"
+                    android:layout_width="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llcFormAlamatContainer"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFormNoTelpLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contact"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiFormNoTelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNoTelp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:hint="@string/contact"
+                            android:imeActionLabel="@string/contact"
+                            android:imeOptions="actionDone"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:paddingHorizontal="@dimen/default_padding"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_subtitle"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                <TextView
+                    android:id="@+id/tvRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:text="@string/not_have_account"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorBlue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llcFormNoTelpContainer" />
+
+
+                <com.apachat.loadingbutton.core.customViews.CircularProgressButton
+                    android:id="@+id/btnMasuk"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/default_height"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/xxl_margin"
+                    android:layout_marginBottom="@dimen/default_padding"
+                    android:background="@drawable/bg_btn_accent_rounded"
+                    android:text="@string/register"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+                    app:spinning_bar_color="@color/colorWhite"
+                    app:spinning_bar_padding="6dp"
+                    app:spinning_bar_width="4dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

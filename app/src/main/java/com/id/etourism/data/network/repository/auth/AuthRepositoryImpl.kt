@@ -5,16 +5,26 @@ import com.id.etourism.utils.ExceptionState
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.JsonObject
+import com.id.etourism.data.local.SessionManager
+import com.id.etourism.data.network.ApiServices
 import com.id.etourism.data.network.model.UserData
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val firebaseauth : FirebaseAuth,
-    private val firestore: FirebaseFirestore
-): AuthRepository {
+    private val firebaseauth: FirebaseAuth,
+    private val firestore: FirebaseFirestore,
+    private val apiServices: ApiServices,
+    private val sessionManager: SessionManager
+) : AuthRepository {
 
 
-    override fun register(result: (ExceptionState<String>) -> Unit, name: String, email: String, pw: String) {
+    override fun register(
+        result: (ExceptionState<String>) -> Unit,
+        name: String,
+        email: String,
+        pw: String
+    ) {
         firebaseauth.createUserWithEmailAndPassword(email, pw)
             .addOnSuccessListener {
                 val user: FirebaseUser? = firebaseauth.currentUser
@@ -35,14 +45,29 @@ class AuthRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun login(result: (ExceptionState<String>) -> Unit, email: String, pw: String) {
-        firebaseauth.signInWithEmailAndPassword(email, pw)
-            .addOnSuccessListener {
-                result.invoke(ExceptionState.Success("Data has been retrieved succesfully"))
-            }
-            .addOnFailureListener {
+    override suspend fun login(result: (ExceptionState<String>) -> Unit, requestBody: JsonObject) {
+        try {
+            val postLogin = apiServices.postLogin(requestBody)
+            if (postLogin.isSuccessful) {
+                postLogin.body()?.let { it ->
+                    sessionManager.dataLogin = it
+                    sessionManager.put(SessionManager.PREF_IS_LOGIN, true)
+                    result.invoke(ExceptionState.Success("Data has been retrieved succesfully"))
+                }
+            } else {
                 result.invoke(ExceptionState.Failure("Data cannot be retrieved"))
             }
+        } catch (e: Exception) {
+            result.invoke(ExceptionState.Failure("An error occurred in the system"))
+        }
+
+//        firebaseauth.signInWithEmailAndPassword(email, pw)
+//            .addOnSuccessListener {
+//                result.invoke(ExceptionState.Success("Data has been retrieved succesfully"))
+//            }
+//            .addOnFailureListener {
+//                result.invoke(ExceptionState.Failure("Data cannot be retrieved"))
+//            }
     }
 
     override fun getUserData(userId: String, result: (ExceptionState<UserData>) -> Unit) {
@@ -59,7 +84,11 @@ class AuthRepositoryImpl @Inject constructor(
                 }
             }
             .addOnFailureListener { exception ->
-                result.invoke(ExceptionState.Failure(exception.message ?: "Failed to retrieve user data"))
+                result.invoke(
+                    ExceptionState.Failure(
+                        exception.message ?: "Failed to retrieve user data"
+                    )
+                )
             }
     }
 

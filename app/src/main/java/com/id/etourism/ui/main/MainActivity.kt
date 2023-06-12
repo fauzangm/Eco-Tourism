@@ -1,6 +1,8 @@
 package com.id.etourism.ui.main
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -17,7 +19,6 @@ import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.dummy.DummyData
 import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.ui.profile.ProfileActivity
-import com.id.etourism.ui.setting.SettingActivity
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         Timber.tag("siap").d(DummyData.generateDummy().toString())
         supportActionBar?.title = ""
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.bg_action_bar))
         val layoutManager = LinearLayoutManager(this)
         binding.rvVillage.layoutManager = layoutManager
         wisata = ArrayList()
@@ -52,11 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settings -> {
-                Intent(this, SettingActivity::class.java).also {
-                    startActivity(it)
-                }
-            }
+
             R.id.profile -> {
                 val profile = Intent(this@MainActivity, ProfileActivity::class.java)
                 profile.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)

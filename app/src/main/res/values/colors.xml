@@ -43,4 +43,7 @@
     <color name="colorLightBlue">#E8F5FF</color>
     <color name="colorGoldDark">#d4af37</color>
     <color name="colorOrangeDark">#FB8C00</color>
+    <color name="colorDivider">#DBDBDB</color>
+    <color name="colorSoftGrey">#F1F1F1</color>
+    <color name="colorText">#444444</color>
 </resources>

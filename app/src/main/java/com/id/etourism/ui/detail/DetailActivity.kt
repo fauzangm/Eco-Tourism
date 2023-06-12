@@ -25,6 +25,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =  ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initAction()
+        supportActionBar?.hide()
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -51,6 +54,12 @@ class DetailActivity : AppCompatActivity() {
 //                mapIntent.resolveActivity(packageManager)?.let {
 //                    startActivity(mapIntent)
 //                }
+        }
+    }
+
+    private fun initAction() {
+        binding.imgBackDetail.setOnClickListener {
+            onBackPressed()
         }
     }
 

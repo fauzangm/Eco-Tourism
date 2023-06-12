@@ -18,6 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+
+
             <ImageView
                 android:id="@+id/iv_village"
                 android:layout_width="match_parent"
@@ -27,6 +30,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
+            <ImageView
+                android:id="@+id/imgBackDetail"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/previous"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="16dp"/>
 
             <LinearLayout
                 android:id="@+id/linear_layoutRating"
