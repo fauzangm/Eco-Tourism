@@ -88,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                         dialog.dismiss()
                         Timber.tag("success").e("${state.data}")
                         start<MainActivity>()
+                        finishAffinity()
                     },3000)
                     sessionManager.put(SessionManager.PREF_IS_LOGIN,true)
                     isLoading = false
