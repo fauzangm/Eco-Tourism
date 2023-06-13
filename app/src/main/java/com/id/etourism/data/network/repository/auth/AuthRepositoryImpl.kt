@@ -19,30 +19,41 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
 
 
-    override fun register(
-        result: (ExceptionState<String>) -> Unit,
-        name: String,
-        email: String,
-        pw: String
+    override suspend fun register(
+        result: (ExceptionState<String>) -> Unit, requestBody: JsonObject
     ) {
-        firebaseauth.createUserWithEmailAndPassword(email, pw)
-            .addOnSuccessListener {
-                val user: FirebaseUser? = firebaseauth.currentUser
-                val profileUpdates = UserProfileChangeRequest.Builder()
-                    .setDisplayName(name)
-                    .build()
-                user?.updateProfile(profileUpdates)
-                    ?.addOnSuccessListener {
-                        result.invoke(ExceptionState.Success("User has been created succesfully"))
-                    }
-                    ?.addOnFailureListener {
-                        result.invoke(ExceptionState.Failure("User cannot be created"))
-                    }
-                result.invoke(ExceptionState.Success("User has been created succesfully"))
+        try {
+            val postRegister = apiServices.postRegister(requestBody)
+            if (postRegister.isSuccessful) {
+                postRegister.body()?.let { it ->
+                    sessionManager.dataRegister = it
+                    sessionManager.put(SessionManager.PREF_IS_REGISTER, true)
+                    result.invoke(ExceptionState.Success("Register succesfully"))
+                }
+            } else {
+                result.invoke(ExceptionState.Failure("Data cannot be retrieved"))
             }
-            .addOnFailureListener {
-                result.invoke(ExceptionState.Failure("User cannot be created"))
-            }
+        } catch (e: Exception) {
+            result.invoke(ExceptionState.Failure("An error occurred in the system"))
+        }
+//        firebaseauth.createUserWithEmailAndPassword(email, pw)
+//            .addOnSuccessListener {
+//                val user: FirebaseUser? = firebaseauth.currentUser
+//                val profileUpdates = UserProfileChangeRequest.Builder()
+//                    .setDisplayName(name)
+//                    .build()
+//                user?.updateProfile(profileUpdates)
+//                    ?.addOnSuccessListener {
+//                        result.invoke(ExceptionState.Success("User has been created succesfully"))
+//                    }
+//                    ?.addOnFailureListener {
+//                        result.invoke(ExceptionState.Failure("User cannot be created"))
+//                    }
+//                result.invoke(ExceptionState.Success("User has been created succesfully"))
+//            }
+//            .addOnFailureListener {
+//                result.invoke(ExceptionState.Failure("User cannot be created"))
+//            }
     }
 
     override suspend fun login(result: (ExceptionState<String>) -> Unit, requestBody: JsonObject) {

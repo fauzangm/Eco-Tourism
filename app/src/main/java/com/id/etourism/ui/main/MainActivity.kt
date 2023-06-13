@@ -79,7 +79,11 @@ class MainActivity : AppCompatActivity() {
                 is ExceptionState.Success -> {
                     Timber.tag("succes").e("${state.data}")
                     wisata.clear()
-                    for (data in state.data){
+                    val dataSort = state.data.sortedBy { it.Place_Id }.mapIndexed { index, wisata ->
+                        Wisata(Place_Id = index.toLong(), Place_Name = wisata.Place_Name, Description = wisata.Description,Category = wisata.Category,
+                        City = wisata.City, Price = wisata.Price, Rating = wisata.Rating, Image = wisata.Image, Coordinate = wisata.Coordinate)
+                    }
+                    for (data in dataSort){
                         wisata.add(data)
                     }
                     adapter.notifyDataSetChanged()
@@ -98,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
                     })
                     adapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                        override fun onItemClicked(data: Wisata) {
+                        override fun onItemClicked(data: Wisata,id:Long) {
                             val extras = Bundle()
                             val intent = Intent(this@MainActivity,DetailActivity::class.java)
                             extras.putString(EXTRA_IMAGE,data.Image)

@@ -25,7 +25,7 @@ class MainAdapter(private var wisata: List<Wisata>) : RecyclerView.Adapter<MainA
     inner class WisataViewHolder(private val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(wisata: Wisata) {
             binding.root.setOnClickListener {
-                onItemClickCallback?.onItemClicked(wisata)
+                wisata.Place_Id?.let { it1 -> onItemClickCallback?.onItemClicked(wisata, it1) }
             }
             binding.apply {
                 Glide.with(itemView)
@@ -50,7 +50,7 @@ class MainAdapter(private var wisata: List<Wisata>) : RecyclerView.Adapter<MainA
     override fun getItemCount(): Int = wisata.size
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: Wisata)
+        fun onItemClicked(data: Wisata,id:Long)
     }
     fun searchDataList(searchList: List<Wisata>) {
         wisata = searchList
