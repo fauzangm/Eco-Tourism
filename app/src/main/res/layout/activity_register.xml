@@ -400,18 +400,6 @@
 
 
 
-                <TextView
-                    android:id="@+id/tvRegister"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:text="@string/not_have_account"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/colorBlue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/llcFormNoTelpContainer" />
-
 
                 <com.apachat.loadingbutton.core.customViews.CircularProgressButton
                     android:id="@+id/btnMasuk"
@@ -427,7 +415,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+                    app:layout_constraintTop_toBottomOf="@+id/llcFormNoTelpContainer"
                     app:spinning_bar_color="@color/colorWhite"
                     app:spinning_bar_padding="6dp"
                     app:spinning_bar_width="4dp" />

@@ -4,7 +4,7 @@
     <string name="desc_onboarding2">Dengan aplikasi ini, Anda akan menjelajahi tempat-tempat menakjubkan yang belum pernah Anda kunjungi sebelumnya. Temukan keindahan alam, warisan budaya, dan kuliner khas setiap tujuan wisata Anda.</string>
     <string name="desc_onboarding3">Ayo mulai petualangan Anda! Aplikasi <b>Eco-Tourism!</b> kami menyajikan informasi terkini tentang destinasi populer, rekomendasi aktivitas seru. Bersiaplah untuk menjelajahi dunia dengan cara baru.</string>
     <string name="lewati">Lewati</string>
-    <string name="login_username">Email</string>
+    <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="tittle_login">Hai Selamat Datang Kembali !</string>
     <string name="logout">Logout</string>

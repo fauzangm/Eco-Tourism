@@ -1,12 +1,16 @@
 package com.id.etourism.ui.auth.register
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -34,6 +38,7 @@ import javax.inject.Inject
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
     @Inject lateinit var sessionManager: SessionManager
+    private lateinit var dialog: Dialog
     private var handler = Handler(Looper.getMainLooper())
     private val registerViewModel : RegisterViewModel by viewModels()
     private var selectedGender: String = ""
@@ -52,6 +57,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun initUi() {
         supportActionBar?.hide()
         setupGenderSpinner()
+        initDialog()
         initAction()
         initObserve()
     }
@@ -60,24 +66,35 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.data.observe(this) { state ->
             when (state) {
                 is ExceptionState.Loading -> {
-                    Timber.tag("loading").e("loading...")
+                    dialog.show()
                 }
 
                 is ExceptionState.Failure -> {
+                    handler.postDelayed({
+                        dialog.dismiss()
+                    },2000)
+                    Toast.makeText(this,state.error,Toast.LENGTH_LONG).show()
                     Timber.tag("gagal").e(state.error)
                 }
 
                 is ExceptionState.Success -> {
                     handler.postDelayed({
+                        dialog.dismiss()
                         start<LoginActivity>()
                         finishAffinity()
-                    },1000)
+                    },2000)
                     Toast.makeText(this,"Successful Register",Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
+    private fun initDialog() {
+        dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.layout_loading)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
     private fun initAction() {
         binding.btnMasuk.setOnClickListener {
             val name = binding?.etNama?.text.toString().trim()
@@ -111,7 +128,6 @@ class RegisterActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item
         )
         binding.spinGender.adapter = genderSpinnerAdapter
-//        dataRegistrasiCache.dataRegistrasi?.wajibPajak?.gender?.let { binding.spinGender.setSelection(it) }
         binding.spinGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
