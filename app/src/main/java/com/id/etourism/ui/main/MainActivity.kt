@@ -17,11 +17,16 @@ import com.id.etourism.adapter.MainAdapter
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.dummy.DummyData
+import com.id.etourism.ml.ModelCitcat
 import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.ui.profile.ProfileActivity
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import timber.log.Timber
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val viewmodel : MainViewModel by viewModels()
     private lateinit var adapter: MainAdapter
     private lateinit var wisata: ArrayList<Wisata>
+    private var predictions :FloatArray? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -140,6 +146,28 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_RATING = "extra_rating"
         const val EXTRA_DESCRIPTION = "extra_description"
         const val EXTRA_IMAGE = "extra_image"
+    }
+    private fun modelTflite(){
+        val model = ModelCitcat.newInstance(this)
+        val byteBuffer = ByteBuffer.allocateDirect(40)
+        byteBuffer.order(ByteOrder.nativeOrder())
+
+        // Misalnya, jika Anda ingin mengisi byteBuffer dengan data integer
+        val data = intArrayOf(1, 2, 3)
+        for (value in data) {
+            byteBuffer.putInt(value)
+        }
+        // Creates inputs for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 3), DataType.INT64)
+        inputFeature0.loadBuffer(byteBuffer)
+
+        // Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        predictions = outputFeature0.floatArray
+        // Releases model resources if no longer used.
+        model.close()
     }
 
 
