@@ -81,7 +81,7 @@
                         android:id="@+id/tvUsernameLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/login_username" />
+                        android:text="@string/ussername" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tiUsername"
@@ -94,6 +94,51 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etUsername"
+                            android:paddingHorizontal="@dimen/default_padding"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:hint="@string/ussername"
+                            android:imeActionLabel="@string/ussername"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingVertical="@dimen/small_padding"
+                            android:paddingTop="0dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_text"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcEmailFormContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/default_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llcUsernameFormContainer">
+
+                    <TextView
+                        android:id="@+id/tvEmailLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_username" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
                             android:paddingHorizontal="@dimen/default_padding"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/default_height"
@@ -120,7 +165,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/llcUsernameFormContainer">
+                    app:layout_constraintTop_toBottomOf="@+id/llcEmailFormContainer">
 
                     <TextView
                         android:id="@+id/tvPasswordLabel"
@@ -225,12 +270,57 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llcHobiFormContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginHorizontal="@dimen/small_margin"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llcFormGenderContainer">
+
+                    <TextView
+                        android:id="@+id/tvHobiLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hobi" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiHobi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etHobi"
+                            android:paddingHorizontal="@dimen/default_padding"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_height"
+                            android:background="@drawable/bg_white_xl_border_divider_rounded"
+                            android:hint="@string/hobi"
+                            android:imeActionLabel="@string/ussername"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingVertical="@dimen/small_padding"
+                            android:paddingTop="0dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_text"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/llcFormAlamatContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/llcFormGenderContainer"
+                    app:layout_constraintTop_toBottomOf="@id/llcHobiFormContainer"
                     android:layout_marginTop="@dimen/default_margin"
                     android:layout_marginHorizontal="@dimen/small_margin"
                     android:orientation="vertical">

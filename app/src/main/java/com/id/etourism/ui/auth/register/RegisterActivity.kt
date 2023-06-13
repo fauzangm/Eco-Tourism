@@ -3,6 +3,8 @@ package com.id.etourism.ui.auth.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -11,7 +13,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.id.etourism.R
+import com.id.etourism.data.local.SessionManager
+import com.id.etourism.data.local.model.FormatDataLogin
+import com.id.etourism.data.local.model.FormatDataRegister
 import com.id.etourism.databinding.ActivityLoginBinding
 import com.id.etourism.databinding.ActivityRegisterBinding
 import com.id.etourism.ui.auth.login.LoginActivity
@@ -21,10 +28,13 @@ import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
 import splitties.activities.start
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterBinding
+    @Inject lateinit var sessionManager: SessionManager
+    private var handler = Handler(Looper.getMainLooper())
     private val registerViewModel : RegisterViewModel by viewModels()
     private var selectedGender: String = ""
 
@@ -58,7 +68,11 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 is ExceptionState.Success -> {
-                    Timber.tag("success").e("${state.data}")
+                    handler.postDelayed({
+                        start<LoginActivity>()
+                        finishAffinity()
+                    },1000)
+                    Toast.makeText(this,"Successful Register",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -67,19 +81,24 @@ class RegisterActivity : AppCompatActivity() {
     private fun initAction() {
         binding.btnMasuk.setOnClickListener {
             val name = binding?.etNama?.text.toString().trim()
-            val email = binding?.etUsername?.text.toString().trim()
+            val email = binding?.etEmail?.text.toString().trim()
             val password = binding?.etPassword?.text.toString().trim()
             val alamat = binding?.etAlamat?.text.toString().trim()
             val kontak = binding?.etNoTelp?.text.toString().trim()
+            val ussername = binding?.etUsername?.text.toString().trim()
+            val hobi = binding?.etHobi?.text.toString().trim()
+
 
             if (!isFormValid(name, email, password)) {
                 Toast.makeText(this, getString(R.string.form_error), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            registerViewModel.register(name, email, password)
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            sessionManager.formatDataRegister = FormatDataRegister(email = email, hobi = hobi,
+                password = password, alamat = alamat, namalengkap = name, kontak = kontak, username=ussername, jeniskelamin = selectedGender )
+            registerViewModel.register(
+                Gson().fromJson(Gson().toJson(sessionManager.formatDataRegister), JsonObject::class.java)
+            )
         }
         binding.imgBackRegist.setOnClickListener {
             onBackPressed()

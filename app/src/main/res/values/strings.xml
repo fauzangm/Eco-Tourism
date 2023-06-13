@@ -14,6 +14,8 @@
     <string name="register_username">Full Name</string>
     <string name="register_email">Email</string>
     <string name="register_password">Password</string>
+    <string name="ussername">Ussername</string>
+    <string name="hobi">Hobi</string>
     <string name="title_register">Registrate yourself !</string>
     <string name="form_error">"Email and password required"</string>
     <string name="email_error">Masukkan Email yang valid</string>
