@@ -1,8 +1,7 @@
 package com.id.etourism.ui.main
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -10,23 +9,27 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.id.etourism.R
 import com.id.etourism.adapter.MainAdapter
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
-import com.id.etourism.dummy.DummyData
+import com.id.etourism.data.local.dummy.DummyData
 import com.id.etourism.ml.ModelCitcat
 import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.ui.profile.ProfileActivity
 import com.id.etourism.utils.ExceptionState
 import dagger.hilt.android.AndroidEntryPoint
 import org.tensorflow.lite.DataType
+import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import timber.log.Timber
+import java.io.FileInputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.LongBuffer
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -89,12 +92,22 @@ class MainActivity : AppCompatActivity() {
                         Wisata(Place_Id = index.toLong(), Place_Name = wisata.Place_Name, Description = wisata.Description,Category = wisata.Category,
                         City = wisata.City, Price = wisata.Price, Rating = wisata.Rating, Image = wisata.Image, Coordinate = wisata.Coordinate)
                     }
+                    val intArray = arrayListOf<Float>()
                     for (data in dataSort){
+                        intArray.add(data.Place_Id!!.toFloat())
                         wisata.add(data)
                     }
                     adapter.notifyDataSetChanged()
-
-
+                    val fixData = arrayListOf<ArrayList<Float>>()
+                    intArray.forEach {
+                        fixData.add(arrayListOf(1f,it,0f))
+                    }
+                    Timber.e("model data $fixData")
+                    try {
+                        modelTflite(fixData)
+                    }catch (e:Exception){
+                        e.printStackTrace()
+                    }
                     binding.search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
                         override fun onQueryTextSubmit(query: String?): Boolean {
 
@@ -151,28 +164,66 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_DESCRIPTION = "extra_description"
         const val EXTRA_IMAGE = "extra_image"
     }
-    private fun modelTflite(){
+    private fun modelTflite(inputArray: ArrayList<ArrayList<Float>>) {
+        /**
+         *
+         *
         val model = ModelCitcat.newInstance(this)
-        val byteBuffer = ByteBuffer.allocateDirect(40)
+        val dummyData = arrayListOf<ArrayList<Float>>()
+        dummyData.add(arrayListOf(1f,0f))
+        val numRows = dummyData.size
+        val numCols = dummyData[0].size
+        val totalElements = dummyData.size * dummyData[0].size
+        val byteBuffer = ByteBuffer.allocateDirect(totalElements * 4)
         byteBuffer.order(ByteOrder.nativeOrder())
-
-        // Misalnya, jika Anda ingin mengisi byteBuffer dengan data integer
-        val data = intArrayOf(1, 2, 3)
-        for (value in data) {
-            byteBuffer.putInt(value)
+        for (row in dummyData) {
+        for (value in row) {
+        byteBuffer.putFloat(value)
         }
+        }
+        Timber.tag("check1").e(byteBuffer.toString())
         // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 3), DataType.INT64)
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, numRows,numCols), DataType.FLOAT32)
         inputFeature0.loadBuffer(byteBuffer)
 
+        Timber.tag("check2").e(byteBuffer.toString() + "dan ${inputFeature0.buffer} check $totalElements")
         // Runs model inference and gets result.
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        predictions = outputFeature0.floatArray
+        val predictions = outputFeature0.floatArray
+        Timber.e("result $predictions")
         // Releases model resources if no longer used.
         model.close()
+         */
+        val interpreter = Interpreter(loadModelFile())
+        val inputData = longArrayOf(0L, 1L)
+        val inputBuffer: ByteBuffer = ByteBuffer.allocateDirect(inputData.size * 8)
+        inputBuffer.order(ByteOrder.nativeOrder())
+        val inputLongBuffer: LongBuffer = inputBuffer.asLongBuffer()
+        inputLongBuffer.put(inputData)
+        val inputTensorIndex = 0
+        val inputShape = interpreter.getInputTensor(inputTensorIndex).shape()
+        require(inputShape.size == 2 && inputShape[1] == inputData.size)
+        inputBuffer.rewind()
+        val outputTensorIndex = 0
+        val outputShape = interpreter.getOutputTensor(outputTensorIndex).shape()
+        val outputBuffer = Array(1) { FloatArray(outputShape[1]) }
+        interpreter.run(inputBuffer, outputBuffer)
+        val recommendationScores = outputBuffer[0]
+        Timber.tag("recomend").e(recommendationScores.toString())
+        for (score in recommendationScores) {
+            Timber.tag("output").e("Recommendation score: $score")
+        }
     }
 
+    private fun loadModelFile(): MappedByteBuffer {
+        val assetFileDescriptor = assets.openFd("model-citcat.tflite")
+        val inputStream = FileInputStream(assetFileDescriptor.fileDescriptor)
+        val fileChannel = inputStream.channel
+        val startOffset = assetFileDescriptor.startOffset
+        val declaredLength = assetFileDescriptor.declaredLength
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+    }
 
 }
