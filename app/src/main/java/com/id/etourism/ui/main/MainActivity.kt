@@ -17,7 +17,7 @@ import com.id.etourism.adapter.MainAdapter
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.dummy.DummyData
-import com.id.etourism.ml.ModelCitcat
+import com.id.etourism.ml.ModelCitcatNew
 import com.id.etourism.ui.detail.DetailActivity
 import com.id.etourism.ui.profile.ProfileActivity
 import com.id.etourism.utils.ExceptionState
@@ -151,18 +151,21 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_DESCRIPTION = "extra_description"
         const val EXTRA_IMAGE = "extra_image"
     }
-    private fun modelTflite(){
-        val model = ModelCitcat.newInstance(this)
-        val byteBuffer = ByteBuffer.allocateDirect(40)
+    private fun modelTflite(inputArray: ArrayList<ArrayList<Int>>) {
+        val model = ModelCitcatNew.newInstance(this)
+        val numRows = inputArray.size
+        val numCols = inputArray[0].size
+        val totalElements = inputArray.size * inputArray[0].size
+        val byteBuffer = ByteBuffer.allocateDirect(totalElements * 4)
         byteBuffer.order(ByteOrder.nativeOrder())
 
         // Misalnya, jika Anda ingin mengisi byteBuffer dengan data integer
-        val data = intArrayOf(1, 2, 3)
+        val data = intArrayOf(1, 2)
         for (value in data) {
             byteBuffer.putInt(value)
         }
         // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 3), DataType.INT64)
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 2), DataType.INT64)
         inputFeature0.loadBuffer(byteBuffer)
 
         // Runs model inference and gets result.
@@ -173,6 +176,4 @@ class MainActivity : AppCompatActivity() {
         // Releases model resources if no longer used.
         model.close()
     }
-
-
 }

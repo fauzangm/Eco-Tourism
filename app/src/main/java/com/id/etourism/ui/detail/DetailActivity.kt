@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.id.etourism.R
 import com.id.etourism.databinding.ActivityDetailBinding
 import com.id.etourism.databinding.ActivityMainBinding
-import com.id.etourism.ml.ModelCitcat
 import com.id.etourism.ui.location.LocationActivity
 import com.id.etourism.ui.main.MainActivity
 import com.id.etourism.ui.profile.ProfileActivity
