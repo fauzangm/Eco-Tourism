@@ -1,4 +1,4 @@
-package com.id.etourism.dummy
+package com.id.etourism.data.local.dummy
 
 import com.id.etourism.data.network.model.Wisata
 import kotlin.random.Random
