@@ -12,6 +12,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.id.etourism.R
 import com.id.etourism.adapter.MainAdapter
+import com.id.etourism.data.local.SessionManager
 import com.id.etourism.data.network.model.Wisata
 import com.id.etourism.databinding.ActivityMainBinding
 import com.id.etourism.data.local.dummy.DummyData
@@ -31,10 +32,12 @@ import java.nio.LongBuffer
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import java.util.Locale
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var menu: Menu? = null
+    @Inject lateinit var sessionManager: SessionManager
     private lateinit var binding : ActivityMainBinding
     private val viewmodel : MainViewModel by viewModels()
     private lateinit var adapter: MainAdapter
@@ -197,7 +200,7 @@ class MainActivity : AppCompatActivity() {
         model.close()
          */
         val interpreter = Interpreter(loadModelFile())
-        val inputData = longArrayOf(0L, 1L)
+        val inputData = longArrayOf(sessionManager.dataLogin?.kota!!.toLong(), sessionManager.dataLogin?.suasana!!.toLong())
         val inputBuffer: ByteBuffer = ByteBuffer.allocateDirect(inputData.size * 8)
         inputBuffer.order(ByteOrder.nativeOrder())
         val inputLongBuffer: LongBuffer = inputBuffer.asLongBuffer()
